@@ -4,6 +4,7 @@ import java.awt.Font;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JScrollBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -25,6 +26,9 @@ public class ProManager {
     public static JScrollPane member_management_scroll_panel;
     public static RequirementManagementPanel requirement_management_panel;
     public static JScrollPane requirement_management_scroll_panel;
+    // TODO(Fran): Refactor all variable names to fit Java camelCase standard
+    public static CategorizeManagementPanel categorizeManagementPanel;
+    public static JScrollPane categorizeManagementScrollPanel;
 
     public static Project current_project = null;
 
@@ -51,6 +55,18 @@ public class ProManager {
         new_project_panel = new NewProjectPanel();
         dash_panel = new JTabbedPane();
         dash_panel.setTabPlacement(JTabbedPane.BOTTOM);
+        dash_panel.addChangeListener(
+            (e) -> {
+            if(dash_panel.getSelectedIndex() == 2) {
+                categorizeManagementPanel.AddAllCategorizePanels();
+                JScrollBar scroll =
+                    categorizeManagementScrollPanel.getVerticalScrollBar();
+                scroll.setValue(scroll.getMinimum());
+                categorizeManagementScrollPanel.revalidate();
+                categorizeManagementScrollPanel.repaint();
+            }
+        });
+
 
         card_panel = new JPanel(new CardLayout());
         card_panel.add("Welcome", welcome_panel);
@@ -58,6 +74,8 @@ public class ProManager {
 
         card_panel.add("Dash", dash_panel);
 
+        /*
+        */
         window.add(card_panel);
 
         window.setVisible(true);

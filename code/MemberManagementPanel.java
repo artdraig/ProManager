@@ -62,7 +62,6 @@ class MemberPanel extends JPanel {
                             member_panels.get(i) == panel) {
                             JTextField field = (JTextField)panel.getComponent(2);
                             ProManager.current_project.members.set(i, field.getText());
-                            System.out.println(ProManager.current_project.members.get(i));
                             break;
                     }
                 }

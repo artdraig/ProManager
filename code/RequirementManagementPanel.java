@@ -42,7 +42,6 @@ class RequirementPanel extends JPanel {
                         if(panel == ProManager.requirement_management_panel.requirement_panels.get(i)) {
                             ProManager.requirement_management_panel.RemoveRequirementPanel(panel, i);
                             ProManager.current_project.RemoveRequirement(i);
-                            System.out.println(ProManager.current_project);
                             this.revalidate();
                             this.repaint();
                         break;
@@ -89,18 +88,17 @@ class RequirementPanel extends JPanel {
                         if(panel == ProManager.requirement_management_panel.requirement_panels.get(i)) {
                             JTextArea area = (JTextArea)panel.getComponent(2);
                             Requirement requirement = new Requirement();
-                            requirement.requirement_text = area.getText();
+                            requirement.text = area.getText();
                             JPanel button_panel = (JPanel)panel.getComponent(3);
                             JRadioButton funct_button = (JRadioButton)button_panel.getComponent(1);
                             if(funct_button.isSelected()) {
-                                requirement.is_functional = true;
+                                requirement.isFunctional = true;
                             }
                             else {
-                                requirement.is_functional = false;
+                                requirement.isFunctional = false;
                             }
 
                             ProManager.current_project.requirements.set(i, requirement);
-                            System.out.println(ProManager.current_project.toString());
                         break;
                     }
                 }
@@ -120,10 +118,10 @@ public class RequirementManagementPanel extends JPanel {
         this.remove(button_add);
         Requirement requirement = ProManager.current_project.requirements
             .get(requirement_panels.size());
-        String requirement_text = requirement.requirement_text;
-        RequirementPanel requirement_panel = new RequirementPanel(requirement_text);
-        requirement_panel.requirement_area.setText(requirement_text);
-        if(requirement.is_functional) {
+        String text = requirement.text;
+        RequirementPanel requirement_panel = new RequirementPanel(text);
+        requirement_panel.requirement_area.setText(text);
+        if(requirement.isFunctional) {
             requirement_panel.functional_button.setSelected(true);
         }
         else {

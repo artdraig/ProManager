@@ -71,6 +71,20 @@ public class NewProjectPanel extends JPanel {
                 requirement_management_tab.setFont(ProManager.default_font);
                 ProManager.dash_panel.setTabComponentAt(1, requirement_management_tab);
 
+                ProManager.categorizeManagementPanel = new CategorizeManagementPanel();
+                ProManager.categorizeManagementScrollPanel =
+                    new JScrollPane(ProManager.categorizeManagementPanel);
+                ProManager.categorizeManagementScrollPanel.
+                    getVerticalScrollBar().setUnitIncrement(16);
+                ProManager.categorizeManagementScrollPanel.
+                    setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                ProManager.dash_panel.addTab("Categorize Management",
+                        ProManager.categorizeManagementScrollPanel);
+
+                JLabel categorizeManagementTab = new JLabel("Categorize");
+                categorizeManagementTab.setFont(ProManager.default_font);
+                ProManager.dash_panel.setTabComponentAt(2, categorizeManagementTab);
+
                 ProManager.SwitchLayout("Dash");
             }
         );

@@ -1,25 +1,97 @@
 import java.util.LinkedList;
 
+enum RequirementCategory {
+    UNASSIGNED,
+    USER,
+    SYSTEM,
+    BUSINESS,
+    REGULATORY,
+    INTERFACE,
+    DESIGN;
+
+    public static RequirementCategory fromIndex(int i) {
+        RequirementCategory c = UNASSIGNED;
+        switch(i) {
+            case 1: c = USER;
+                    break;
+            case 2: c = SYSTEM;
+                    break;
+            case 3: c = BUSINESS;
+                    break;
+            case 4: c = REGULATORY;
+                    break;
+            case 5: c = INTERFACE;
+                    break;
+            case 6: c = DESIGN; 
+                    break;
+        }
+        return c;
+    }
+
+    public static int fromEnum(RequirementCategory c) {
+        int i= 0;
+        switch(c) {
+            case USER: i = 1;
+                       break;
+            case SYSTEM: i = 2;
+                         break;
+            case BUSINESS: i = 3;
+                           break;
+            case REGULATORY: i = 4;
+                             break;
+            case INTERFACE: i = 5;
+                            break;
+            case DESIGN: i = 6;
+                         break;
+        }
+        return i;
+    }
+
+    public static String toStringFromIndex(int i) {
+        String s = "UNASSIGNED";
+        switch(i) {
+            case 1: s = "USER";
+                    break;
+            case 2: s = "SYSTEM";
+                    break;
+            case 3: s = "BUSINESS";
+                    break;
+            case 4: s = "REGULATORY";
+                    break;
+            case 5: s = "INTERFACE";
+                    break;
+            case 6: s = "DESIGN"; 
+                    break;
+        }
+        return s;
+    }
+}
+
 class Requirement {
-    public String requirement_text;
-    boolean is_functional;
+    public String text;
+    boolean isFunctional;
+    RequirementCategory category;
 
     Requirement() {
-        requirement_text = new String("Requirement text");
-        is_functional = false;
+        text = new String("Requirement text");
+        isFunctional = false;
+        category = RequirementCategory.UNASSIGNED;
     }
 
     @Override
     public String toString() {
         String result = "";
-        if(!is_functional) {
+        if(!isFunctional) {
             result+="Non functional ";
         }
         else {
             result+="Functional ";
         }
         result += 
-            "Requirement: "+requirement_text+"\n";
+            "Requirement: "+text+"\n";
+        result += "Category: ";
+        result +=
+        RequirementCategory.toStringFromIndex(RequirementCategory.fromEnum(category));
         return result;
     }
 }
