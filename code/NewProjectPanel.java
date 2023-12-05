@@ -81,9 +81,31 @@ public class NewProjectPanel extends JPanel {
                 ProManager.dash_panel.addTab("Categorize Management",
                         ProManager.categorizeManagementScrollPanel);
 
-                JLabel categorizeManagementTab = new JLabel("Categorize");
+                JLabel categorizeManagementTab = new JLabel("Categories");
                 categorizeManagementTab.setFont(ProManager.default_font);
                 ProManager.dash_panel.setTabComponentAt(2, categorizeManagementTab);
+
+                ProManager.taskManagementPanel = new TaskManagementPanel();
+                ProManager.taskManagementScrollPanel =
+                    new JScrollPane(ProManager.taskManagementPanel);
+                ProManager.taskManagementScrollPanel.
+                    getVerticalScrollBar().setUnitIncrement(16);
+                ProManager.taskManagementScrollPanel.
+                    setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                ProManager.dash_panel.addTab("Task Management",
+                        ProManager.taskManagementScrollPanel);
+
+                JLabel taskManagementTab = new JLabel("Tasks");
+                taskManagementTab.setFont(ProManager.default_font);
+                ProManager.dash_panel.setTabComponentAt(3, taskManagementTab);
+
+                ProManager.generalInfoPanel = new GeneralInfoPanel();
+                ProManager.dash_panel.addTab("General Info",
+                        ProManager.generalInfoPanel);
+
+                JLabel generalManagementTab = new JLabel("General");
+                generalManagementTab.setFont(ProManager.default_font);
+                ProManager.dash_panel.setTabComponentAt(4, generalManagementTab);
 
                 ProManager.SwitchLayout("Dash");
             }

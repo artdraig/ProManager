@@ -22,18 +22,24 @@ class MemberPanel extends JPanel {
         button_remove.setFont(ProManager.default_font);
         button_remove.addActionListener(
             (e) -> {
-                for(int i=0;
-                        i < ProManager.member_management_panel.member_panels.size();
-                        i++) {
-                    JButton button = (JButton)e.getSource();
-                    JPanel panel = (JPanel)button.getParent();
-                    if( ProManager.member_management_panel.
-                            member_panels.get(i) == panel) {
-                        ProManager.member_management_panel.RemoveMemberPanel(panel, i);
-                        ProManager.current_project.RemoveMember(i);
-                        this.revalidate();
-                        this.repaint();
-                        break;
+                if(ProManager.current_project.members.size() <= 1) {
+                    ;
+                }
+                else {
+                    for(int i=0;
+                            i < ProManager.member_management_panel.member_panels.size();
+                            i++) {
+                        JButton button = (JButton)e.getSource();
+                        JPanel panel = (JPanel)button.getParent();
+                        if( ProManager.member_management_panel.
+                                member_panels.get(i) == panel) {
+                            ProManager.member_management_panel.RemoveMemberPanel(panel, i);
+                            String member = ProManager.current_project.members.get(i);
+                            ProManager.current_project.RemoveMember(i);
+                            this.revalidate();
+                            this.repaint();
+                            break;
+                        }
                     }
                 }
             }
@@ -61,6 +67,7 @@ class MemberPanel extends JPanel {
                         if( ProManager.member_management_panel.
                             member_panels.get(i) == panel) {
                             JTextField field = (JTextField)panel.getComponent(2);
+                            String member = ProManager.current_project.members.get(i);
                             ProManager.current_project.members.set(i, field.getText());
                             break;
                     }
@@ -111,6 +118,8 @@ public class MemberManagementPanel extends JPanel {
         button_add.addActionListener(
             (e) -> {
                 ProManager.current_project.AddMember();
+                int i = ProManager.current_project.members.size()-1;
+                String member =ProManager.current_project.members.get(i);
                 AddMemberPanel();
             }
         );

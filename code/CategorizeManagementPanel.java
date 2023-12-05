@@ -46,7 +46,6 @@ class CategorizePanel extends JPanel {
                     JComboBox box = (JComboBox)e.getSource();
                     int category_index = (int)box.getSelectedIndex();
                     this.requirement.category = RequirementCategory.fromIndex(category_index);
-                    System.out.println(requirement.toString());
                 });
 
         this.add(requirementText, BorderLayout.CENTER);
@@ -72,7 +71,6 @@ public class CategorizeManagementPanel extends JPanel {
         CategorizePanel panel = new CategorizePanel(requirement);
         categorizePanels.add(panel);
         this.add(panel);
-        this.add(Box.createRigidArea(new Dimension(0,45)));
     }
     void AddAllCategorizePanels() {
         ClearCategorizePanels();
@@ -144,7 +142,7 @@ public class CategorizeManagementPanel extends JPanel {
         group.add(nonFunctionalButton);
         group.add(functionalButton);
         group.add(allButton);
-        JLabel sortByLabel = new JLabel("Sort by: ");
+        JLabel sortByLabel = new JLabel("Filter by: ");
         sortByLabel.setFont(ProManager.default_font);
         button_view.add(sortByLabel);
         button_view.add(allButton);

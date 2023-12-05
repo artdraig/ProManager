@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import javax.swing.JPanel;
@@ -29,6 +30,9 @@ public class ProManager {
     // TODO(Fran): Refactor all variable names to fit Java camelCase standard
     public static CategorizeManagementPanel categorizeManagementPanel;
     public static JScrollPane categorizeManagementScrollPanel;
+    public static TaskManagementPanel taskManagementPanel;
+    public static JScrollPane taskManagementScrollPanel;
+    public static GeneralInfoPanel generalInfoPanel;
 
     public static Project current_project = null;
 
@@ -65,6 +69,9 @@ public class ProManager {
                 categorizeManagementScrollPanel.revalidate();
                 categorizeManagementScrollPanel.repaint();
             }
+            if(dash_panel.getSelectedIndex() == 3) {
+                taskManagementPanel.Redo();
+            }
         });
 
 
@@ -74,8 +81,6 @@ public class ProManager {
 
         card_panel.add("Dash", dash_panel);
 
-        /*
-        */
         window.add(card_panel);
 
         window.setVisible(true);

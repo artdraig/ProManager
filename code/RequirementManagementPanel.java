@@ -33,18 +33,22 @@ class RequirementPanel extends JPanel {
         button_remove.setPreferredSize(button_size);
         button_remove.addActionListener(
             (e) -> {
-                    for(int i=0;
-                        i < ProManager.requirement_management_panel.
-                        requirement_panels.size();
-                        i++) {
-                        JButton button = (JButton)e.getSource();
-                        JPanel panel = (JPanel)(button.getParent());
-                        if(panel == ProManager.requirement_management_panel.requirement_panels.get(i)) {
-                            ProManager.requirement_management_panel.RemoveRequirementPanel(panel, i);
-                            ProManager.current_project.RemoveRequirement(i);
-                            this.revalidate();
-                            this.repaint();
-                        break;
+                    if(ProManager.current_project.requirements.size() <= 1) {
+                    }
+                    else {
+                        for(int i=0;
+                            i < ProManager.requirement_management_panel.
+                            requirement_panels.size();
+                            i++) {
+                            JButton button = (JButton)e.getSource();
+                            JPanel panel = (JPanel)(button.getParent());
+                            if(panel == ProManager.requirement_management_panel.requirement_panels.get(i)) {
+                                ProManager.requirement_management_panel.RemoveRequirementPanel(panel, i);
+                                ProManager.current_project.RemoveRequirement(i);
+                                this.revalidate();
+                                this.repaint();
+                            break;
+                        }
                     }
                 }
             }
@@ -97,6 +101,8 @@ class RequirementPanel extends JPanel {
                             else {
                                 requirement.isFunctional = false;
                             }
+                            Requirement old_req = ProManager.current_project.requirements.get(i);
+                            requirement.category = old_req.category;
 
                             ProManager.current_project.requirements.set(i, requirement);
                         break;

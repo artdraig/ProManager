@@ -4,3 +4,7 @@ A final project for the software project management class in Kennesaw State Univ
 Note: All files with the 'build' filename are build scripts for each development OS. 'build.sh' is for building on Linux with a bash terminal.
 
 Todo: Include photos
+
+## Libraries
+
+- JCalendar for a easy to use calendar component

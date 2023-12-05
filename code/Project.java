@@ -1,6 +1,7 @@
 import java.util.LinkedList;
+import java.io.*;
 
-enum RequirementCategory {
+enum RequirementCategory implements Serializable{
     UNASSIGNED,
     USER,
     SYSTEM,
@@ -67,7 +68,7 @@ enum RequirementCategory {
     }
 }
 
-class Requirement {
+class Requirement implements Serializable{
     public String text;
     boolean isFunctional;
     RequirementCategory category;
@@ -96,13 +97,43 @@ class Requirement {
     }
 }
 
-public class Project {
+class Task implements Serializable{
+    public String description;
+    public String doneBy;
+
+    public int year;
+    public int month;
+    public int day;
+
+    public static int numberOfYears=2060-2023;
+    public static int numberOfMonths=12;
+    public static int numberOfDays=31;
+
+    Task(Project project) {
+        description = "Task description";
+        doneBy = project.members.get(0);
+        year=2023;month=1;day=1;
+    }
+
+    @Override
+    public String toString() {
+        String result="Task: ";
+        result+=description+"\n";
+        result+="Done by: "+doneBy;
+        result+=" on ";
+        result+=+month+"/"+day+"/"+year+"";
+        return result;
+    }
+}
+
+public class Project implements Serializable {
     String project_name;
     String project_manager;
     String project_description;
 
     LinkedList<String> members;
     LinkedList<Requirement> requirements;
+    LinkedList<Task> tasks;
     static String default_member_name = "Member Name";
 
     Project(String name, String manager, String description) {
@@ -113,6 +144,16 @@ public class Project {
         AddMember();
         requirements = new LinkedList<Requirement>();
         AddRequirement();
+        tasks = new LinkedList<Task>();
+        AddTask();
+    }
+
+    public void AddTask() {
+        tasks.add(new Task(this));
+    }
+
+    public void RemoveTask(int i) {
+        tasks.remove(i);
     }
 
     public void AddRequirement() {
