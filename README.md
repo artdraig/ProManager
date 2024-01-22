@@ -7,4 +7,4 @@ Todo: Include photos
 
 ## Libraries
 
-- JCalendar for a easy to use calendar component
+- Swing
